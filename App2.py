@@ -17,13 +17,13 @@ import streamlit.components.v1 as components
 
 
 
-df = pd.read_csv(r"C:\Users\sonas\Desktop\Projet 7\data.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/data2.csv")
 df.drop(['Unnamed: 0'], axis=1, inplace=True)
-df = df.loc[:5000]
+
 dt = df.drop(['TARGET'], axis = 1)
-X = pd.read_csv(r"C:\Users\sonas\Desktop\Projet 7\X_scal.csv")
+X = pd.read_csv("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/X_scaled.csv")
 X.drop(['Unnamed: 0'], axis=1, inplace=True)
-X = X.loc[:5000]
+
 Y = df['TARGET']
 
 model = joblib.load(r'C:\Users\sonas\Desktop\Projet 7\mdl.pkl')
