@@ -10,11 +10,10 @@ import App2
 from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
-import subprocess
-import Popen
+from subprocess import Popen, PIPE
 
 
-subprocess.Popen("mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0)
+subprocess.Popen("mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0, stdout = subprocess.PIPE)
   #["mlflow", "models", "serve", "-m", "runs:/mlflow_model/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])   
                 # C:/Users/sonas/Desktop/Projet 7")
 
