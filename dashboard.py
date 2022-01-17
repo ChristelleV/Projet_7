@@ -13,7 +13,8 @@ import pickle as p
 import subprocess
 
 
-subprocess.Popen(["mlflow", "models", "serve", "-m", "runs:/mlflow_model/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])   
+subprocess.Popen("mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0)
+  #["mlflow", "models", "serve", "-m", "runs:/mlflow_model/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])   
                 # C:/Users/sonas/Desktop/Projet 7")
 
 
