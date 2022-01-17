@@ -26,7 +26,7 @@ X.drop(['Unnamed: 0'], axis=1, inplace=True)
 
 Y = df['TARGET']
 
-model = joblib.load(r'C:\Users\sonas\Desktop\Projet 7\mdl.pkl')
+model = joblib.load("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl")
 
 
 
