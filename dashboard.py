@@ -10,6 +10,7 @@ import App2
 from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
+import subprocess
 from subprocess import Popen, PIPE
 
 
