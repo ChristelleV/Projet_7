@@ -11,6 +11,7 @@ from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
 import subprocess
+import Popen
 
 
 subprocess.Popen("mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0)
