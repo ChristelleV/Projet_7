@@ -31,7 +31,7 @@ page.app()
 
 
 # Préparation des données
-df = pd.read_csv(r"C:\Users\sonas\Desktop\Projet 7\data.csv")
+df = get_data()      
 df.drop(['Unnamed: 0'], axis=1, inplace=True)
 df = df.loc[:5000]
 
