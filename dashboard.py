@@ -37,7 +37,7 @@ df.drop(['Unnamed: 0'], axis=1, inplace=True)
 dt = df.drop(['TARGET'], axis=1)
 Y = df['TARGET']
 
-X = pd.read_csv(r"C:\Users\sonas\Desktop\Projet 7\X_scal.csv")
+X = pd.read_csv("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/X_scaled.csv")
 X.drop(['Unnamed: 0'], axis=1, inplace=True)
 
 #####################################
