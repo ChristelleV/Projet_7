@@ -26,7 +26,8 @@ X.drop(['Unnamed: 0'], axis=1, inplace=True)
 
 Y = df['TARGET']
 
-model = joblib.load("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl")
+#model = joblib.load("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl")
+model = pickle.load(open("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl", 'rb'))
 
 
 
