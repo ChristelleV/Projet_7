@@ -7,6 +7,7 @@ import requests
 import json
 import App1
 import App2
+import API
 from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
