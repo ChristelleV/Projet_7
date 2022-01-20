@@ -20,7 +20,7 @@ from subprocess import Popen, PIPE
                 # C:/Users/sonas/Desktop/Projet 7")
 
     
-subprocess.Popen(["mlflow", "models", "serve", "-m", "runs:/ef26596d08c72345dd55fc2ddc3c193160ed8fa3/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])
+#subprocess.Popen(["mlflow", "models", "serve", "-m", "runs:/ef26596d08c72345dd55fc2ddc3c193160ed8fa3/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])
 
 st.sidebar.title('Tableau de bord pour prédiction de crédit ')
 st.sidebar.subheader("Navigation")
