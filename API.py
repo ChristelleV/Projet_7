@@ -1,5 +1,6 @@
 import mlflow
 import subprocess
+import streamlit as st
 import os
 
 os.environ["AWS_ACCESS_KEY_ID"]=st.secrets["AWS_ACCESS_KEY_ID"] 
