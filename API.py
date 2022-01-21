@@ -1,13 +1,9 @@
 import mlflow
 import subprocess
+import os
 
+os.environ[“AWS_ACCESS_KEY_ID”]=st.secrets[“AWS_ACCESS_KEY_ID”] 
+os.environ[“AWS_SECRET_ACCESS_KEY ”]=st.secrets[“AWS_SECRET_ACCESS_KEY”] 
 
 subprocess.Popen(["mlflow", "models", "serve", "-m", "s3://mlflowmodel/mlflow_model/"])
 
-#subprocess.Popen(["mlflow", "models", "serve", "-m", "https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])
-
-
-
-   # "mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0, stdout = subprocess.PIPE)
-  #
-#mlflow models serve -m mlflow_model/
