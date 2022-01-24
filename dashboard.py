@@ -7,7 +7,7 @@ import requests
 import json
 import App1
 import App2
-import API_Flask
+#import API_Flask
 from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
@@ -29,7 +29,7 @@ def makecalc():
 if __name__ == '__main__':
     modelfile = 'final_prediction.pickle'
     model = p.load(open(modelfile, 'rb'))
-    app.run(host='127.0.0.1')
+    app.run(host='0.0.0.0')
 
 #############################################################################
 
