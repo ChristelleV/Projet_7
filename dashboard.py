@@ -13,6 +13,7 @@ import numpy as np
 import pickle as p
 import subprocess
 from subprocess import Popen, PIPE
+import os
 
 
 #subprocess.Popen("mlflow models serve -m https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model", shell = True, bufsize = 0, stdout = subprocess.PIPE)
