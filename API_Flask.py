@@ -11,11 +11,10 @@ app = Flask(__name__)
 def makecalc():
     data = request.get_json()
     prediction = np.array2string(model.predict(data))
-
     return jsonify(prediction)
+
 
 if __name__ == '__main__':
     modelfile = 'final_prediction.pickle'
     model = p.load(open(modelfile, 'rb'))
-    from waitress import serve
-    app.run(debug = True ) #host='0.0.0.0')
+    app.run(debug=True, host='127.0.0.1')
