@@ -7,7 +7,7 @@ import requests
 import json
 import App1
 import App2
-import API
+#import API
 from flask import Flask, request, redirect, url_for, flash, jsonify
 import numpy as np
 import pickle as p
@@ -21,6 +21,11 @@ from subprocess import Popen, PIPE
 
     
 #subprocess.Popen(["mlflow", "models", "serve", "-m", "runs:/ef26596d08c72345dd55fc2ddc3c193160ed8fa3/https://github.com/Edsondev21/Projet_7/tree/main/mlflow_model"])
+
+os.environ["AWS_ACCESS_KEY_ID"]=st.secrets["AWS_ACCESS_KEY_ID"] 
+os.environ["AWS_SECRET_ACCESS_KEY"]=st.secrets["AWS_SECRET_ACCESS_KEY"] 
+
+subprocess.Popen(["mlflow", "models", "serve", "-m", "s3://mlflowmodel/mlflow_model/", "--no-conda"])
 
 st.sidebar.title('Tableau de bord pour prédiction de crédit ')
 st.sidebar.subheader("Navigation")
