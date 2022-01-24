@@ -34,7 +34,8 @@ model = open('mdl.pkl', 'wb')
 
 
 def request_pred(data):
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json",
+              "X-CSRFToken": $crf_token}
     r = requests.post("https://share.streamlit.io/edsondev21/projet_7/main/API.py", data=data, headers=headers)    #"http://127.0.0.1:5000/invocations"
     if r.status_code != 200:
         raise Exception(
