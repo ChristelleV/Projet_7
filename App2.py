@@ -42,7 +42,7 @@ def request_pred(data):
     return r.json()
 
 def req_flask(data):
-    url = 'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
+    url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py' #     'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
     j_data = json.dumps(data)
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(url, data=j_data, headers=headers)
