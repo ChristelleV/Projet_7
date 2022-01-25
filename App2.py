@@ -52,8 +52,8 @@ def request_pred(data):
 
 
 def req_flask(data):
-    #url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py' #     'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
-    LOGIN_URL = 'http://127.0.0.1:8000/myview/view'
+    #url =  'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
+    LOGIN_URL = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'
     request = requests.session()
     request.get(LOGIN_URL)
     csrftoken = request.cookies['csrftoken']
