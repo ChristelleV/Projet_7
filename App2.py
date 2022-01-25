@@ -39,6 +39,7 @@ model = open('mdl.pkl', 'wb')
     
     
 def request_pred(data):
+ 
     headers = {"Content-Type": "application/json",
               "X-Csrf-Token" : x_csrf_token_}
     r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
@@ -48,26 +49,29 @@ def request_pred(data):
     return r.json()
 
 
-request = requests.session()
-request.get(LOGIN_URL)
-# Retrieve the CSRF token first
-csrftoken = request.cookies['csrftoken']
-r1 = request.post(LOGIN_URL, headers={'X-CSRFToken': csrftoken},
-                          allow_redirects=False))
-new_csrftoken = r1.cookies['csrftoken']
-data = json.dumps({'test': 'value'})
-payload = {'csrfmiddlewaretoken': new_csrftoken,'data':data }
 
 
 def req_flask(data):
-    url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py' #     'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
+    #url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py' #     'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
+    LOGIN_URL = 'http://127.0.0.1:8000/myview/view'
+    request = requests.session()
+    request.get(LOGIN_URL)
+    csrftoken = request.cookies['csrftoken']
     j_data = json.dumps(data)
-    headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-    r = requests.post(url, data=j_data, headers=headers)
-    if r.status_code != 200:
+    headers = {'content-type': 'application/json', 
+               'X-CSRFToken': csrftoken}
+    r1 = requests.post(LOGIN_URL, data=j_data, headers=headers)
+    new_csrftoken = r1.cookies['csrftoken']
+    payload = {'csrfmiddlewaretoken': new_csrftoken,'data':data }
+    try :
+       r2 = request.post('http://127.0.0.1:8000/myview/myview', data=payload, headers={'X-CSRFToken': r1.cookies['crsftoken']})
+    except :
+       print('error expected')
+    
+    if r1.status_code != 200:
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
-    return r.json()
+    return r2.json()
 
 
 
