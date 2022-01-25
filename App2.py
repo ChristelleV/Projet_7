@@ -32,10 +32,9 @@ Y = df['TARGET']
 #model = pickle.load(open("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl", 'rb'))
 model = open('mdl.pkl', 'wb')
 
-####################
 
 
- ###################
+ ############################################### API Mlflow ###########################################
     
     
 def request_pred(data):
@@ -48,7 +47,7 @@ def request_pred(data):
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r.json()
 
-
+####################################################### API Flask ##########################################
 
 
 def req_flask(data):
@@ -73,7 +72,7 @@ def req_flask(data):
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r2.json()
 
-
+############################################
 
 def app():
     st.title('Prédiction client')
@@ -87,25 +86,26 @@ def app():
 
     st.write('')
 
+    ################################################## Visualisation des informations client ##################################
 
     choix = st.radio("Que voulez vous faire ?", ["Visualiser les informations du client", "Prédiction"])
 
     if choix == "Visualiser les informations du client":
 
-        def countPlotclient():
+        def countPlotclient(feature):
             fig = plt.figure(figsize=(6, 4))
-            sns.countplot(x='CODE_GENDER', data=df, hue='TARGET', palette=['green', "red"])
-            plt.axvline(x=df[df['SK_ID_CURR'] == client].CODE_GENDER.name, linewidth=5)
+            sns.countplot(x=feature, data=df, hue='TARGET', palette=['green', "red"])
+            plt.axvline(x=df[df['SK_ID_CURR'] == client][feature].name, linewidth=5)
             st.pyplot(fig)
 
-        def kde_client(feature, xlab, titre, l):
+        def kde_client(feature, xlab, titre):
             fig2 = plt.figure(figsize=(6, 4))
             sns.kdeplot(df.loc[df['TARGET'] == 0, feature], label='target == 0', color='green', linewidth=3)
             sns.kdeplot(df.loc[df['TARGET'] == 1, feature], label='target == 1', color='red', linewidth=3)
             plt.xlabel(xlab, size=13)
             plt.ylabel('Densité', size=13)
             plt.title(titre, size=16)
-            plt.axvline(x=l, ymin=0, ymax=1, linewidth=5)
+            plt.axvline(x= df[df['SK_ID_CURR'].index == client][feature].values, ymin=0, ymax=1, linewidth=5)
             plt.legend(labels=["Target 0", "Target 1"])
             st.pyplot(fig2)
 
@@ -116,38 +116,36 @@ def app():
 
         st.set_option('deprecation.showPyplotGlobalUse', False)
         with col1:
-            st.write(countPlotclient())
+            st.write(countPlotclient('CODE_GENDER'))
         with col2:
-            st.write(kde_client('Age', '', 'Age du client', df[df['SK_ID_CURR'].index == client].Age.values))
+            st.write(kde_client('Age', '', 'Age du client'))
         with col3:
-            st.write(kde_client('Annee_travail', '', "Années d'experience professionnel",
-                                df[df['SK_ID_CURR'].index == client].Annee_travail.values))
+            st.write(kde_client('Annee_travail', '', "Années d'experience professionnel"))
         with col4:
-            st.write(kde_client('AMT_INCOME_TOTAL', '', 'Revenu total',
-                                df[df['SK_ID_CURR'].index == client].AMT_INCOME_TOTAL.values))
+            st.write(kde_client('AMT_INCOME_TOTAL', '', 'Revenu total'))
         with col5:
-            st.write(
-                kde_client('AMT_CREDIT', '', 'Montant du crédit',
-                           df[df['SK_ID_CURR'].index == client].AMT_CREDIT.values))
+            st.write(kde_client('AMT_CREDIT', '', 'Montant du crédit'))
         with col6:
-            st.write(
-                kde_client('EXT_SOURCE_3', '', 'Source exterieure',
-                           df[df['SK_ID_CURR'].index == client].EXT_SOURCE_3.values))
+            st.write(kde_client('EXT_SOURCE_3', '', 'Source exterieure'))
+
 
         st.write("Voulez vous visualiser d'autres variables ?")
-        dv= dt.drop(['SK_ID_CURR', 'CODE_GENDER', 'Annee_travail', 'Age', 'AMT_INCOME_TOTAL', 'AMT_CREDIT'], axis=1)
+        
+        dv= dt.drop(['SK_ID_CURR', 'CODE_GENDER', 'Annee_travail', 'Age', 'AMT_INCOME_TOTAL',
+                     'AMT_CREDIT', 'EXT_SOURCE_3', 'FLAG_DOCUMENT_3', 'FLAG_MOBIL','FLAG_EMP_PHONE','FLAG_WORK_PHONE',
+                   'FLAG_CONT_MOBILE','FLAG_PHONE','FLAG_EMAIL', 'CNT_FAM_MEMBERS'], axis=1)
+        
         variable = st.selectbox("Choisissez la variable à visualiser", dv.columns)
         cat = ['NAME_CONTRACT_TYPE', 'FLAG_OWN_CAR', 'FLAG_OWN_REALTY', 'NAME_INCOME_TYPE',
                'NAME_EDUCATION_TYPE', 'NAME_FAMILY_STATUS']
+        
         if variable in cat :
-            st.write('peux pas')
+            st.write(countPlotclient(variable))
         else:
-            st.write(
-                kde_client(variable, '', 'Source exterieure',
-                           df[df['SK_ID_CURR'].index == client].variable.values))
+            st.write(kde_client(variable, '', ''))
 
 
-############################# Prediction ###########################
+########################################################### Prediction ###############################################
 
 
     else:
