@@ -31,12 +31,28 @@ Y = df['TARGET']
 #model = pickle.load(open("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl", 'rb'))
 model = open('mdl.pkl', 'wb')
 
+####################
+app = Flask(__name__)
 
 
+@app.route('/api/', methods=['POST'])
+def makecalc():
+    data = request.get_json()
+    prediction = np.array2string(model.predict(data))
+    return jsonify(prediction)
+
+
+if __name__ == '__main__':
+    modelfile = 'final_prediction.pickle'
+    model = p.load(open(modelfile, 'rb'))
+    app.run(host='127.0.0.1')
+
+ ###################
+    
+    
 def request_pred(data):
-    headers = {"Content-Type": "application/json",
-              "X-CSRFToken": crf_token}
-    r = requests.post("https://share.streamlit.io/edsondev21/projet_7/main/API.py", data=data, headers=headers)    #"http://127.0.0.1:5000/invocations"
+    headers = {"Content-Type": "application/json"}
+    r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
     if r.status_code != 200:
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
