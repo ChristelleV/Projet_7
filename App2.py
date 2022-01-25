@@ -52,7 +52,8 @@ if __name__ == '__main__':
     
     
 def request_pred(data):
-    headers = {"Content-Type": "application/json"}
+    headers = {"Content-Type": "application/json",
+              "X-Csrf-Token" : x_csrf_token_}
     r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
     if r.status_code != 200:
         raise Exception(
