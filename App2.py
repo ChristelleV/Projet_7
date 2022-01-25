@@ -33,20 +33,7 @@ Y = df['TARGET']
 model = open('mdl.pkl', 'wb')
 
 ####################
-app = Flask(__name__)
 
-
-@app.route('/api/', methods=['POST'])
-def makecalc():
-    data = request.get_json()
-    prediction = np.array2string(model.predict(data))
-    return jsonify(prediction)
-
-
-if __name__ == '__main__':
-    modelfile = 'final_prediction.pickle'
-    model = p.load(open(modelfile, 'rb'))
-    app.run(host='127.0.0.1')
 
  ###################
     
@@ -59,6 +46,18 @@ def request_pred(data):
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r.json()
+
+
+request = requests.session()
+request.get(LOGIN_URL)
+# Retrieve the CSRF token first
+csrftoken = request.cookies['csrftoken']
+r1 = request.post(LOGIN_URL, headers={'X-CSRFToken': csrftoken},
+                          allow_redirects=False))
+new_csrftoken = r1.cookies['csrftoken']
+data = json.dumps({'test': 'value'})
+payload = {'csrfmiddlewaretoken': new_csrftoken,'data':data }
+
 
 def req_flask(data):
     url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py' #     'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
