@@ -70,6 +70,8 @@ def req_flask(data):
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r.json()
 
+var x_csrf_token_ = r.headers["x-csrf-token"];
+var setcookies_ = r.headers["set-cookie"];
 
 
 def app():
