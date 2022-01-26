@@ -57,8 +57,7 @@ def request_flask(data):
     request.get(LOGIN_URL)
     csrftoken = request.cookies['csrftoken']
     j_data = json.dumps(data)
-    headers = {'content-type': 'application/json', 
-               'X-CSRFToken': csrftoken}
+    headers = {'content-type': 'application/json'}
     r1 = requests.post(LOGIN_URL, data=j_data, headers=headers)
     new_csrftoken = r1.cookies['csrftoken']
     payload = {'csrfmiddlewaretoken': new_csrftoken,'data':data }
