@@ -50,7 +50,7 @@ def request_pred(data):
 ####################################################### API Flask ##########################################
 
 
-def req_flask(data):
+def request_flask(data):
     #url =  'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
     LOGIN_URL = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'
     request = requests.session()
@@ -73,6 +73,19 @@ def req_flask(data):
     return r2.json()
 
 ############################################
+
+def req_flask(data):
+    url = 'http://127.0.0.1:5000/api/'
+    j_data = json.dumps(data)
+    headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+    r = requests.post(url, data=j_data, headers=headers)
+    if r.status_code != 200:
+        raise Exception(
+            "Request failed with status {}, {}".format(r.status_code, r.text))
+    return r.json()
+
+
+#################################
 
 def app():
     st.title('Prédiction client')
