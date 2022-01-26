@@ -165,7 +165,7 @@ def app():
 
             b = (X[X.index == client]).to_json(orient='split')
 
-            pred = request_pred(X[X.index == client].to_json(orient='split'))
+            pred = req_flask(X[X.index == client].to_json(orient='split'))
 
             explainer = lime_tabular.LimeTabularExplainer(training_data=np.array(X),
                                                       feature_names=X.columns,
