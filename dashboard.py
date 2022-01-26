@@ -30,7 +30,7 @@ def makecalc():
 if __name__ == '__main__':
     modelfile = 'final_prediction.pickle'
     model = p.load(open(modelfile, 'rb'))
-    app.run(debug=True, host='127.0.0.1') --no-reload
+    app.run(host='127.0.0.1') --no-reload
 
 #############################################################################
 
