@@ -161,15 +161,12 @@ def app():
                                              num_features=10, labels = (1, 0))
             taux = (model.predict_proba(X[X.index == client])[0][0])*100
 
-            if pred == [0.0]:
-                st.markdown(f'<h1 style="text-align: center; color:green;font-size:24px;'
-                            f'">{"Felicitations le crédit est accordé"}</h1>',
-                            unsafe_allow_html=True)
-            
-            else:
+            if pred == [1.0]:
+
                 st.markdown(
                     f'<h1 style="text-align: center; color:red;font-size:24px;">{"Le crédit est malheureusement refusé"}</h1>',
                     unsafe_allow_html=True)
+                st.write("")
 
                 latest_iteration = st.empty()
                 bar = st.progress(0)
@@ -182,12 +179,10 @@ def app():
                         background-color: red;
                     }
                 </style>""",  unsafe_allow_html=True,)
-             
-             
-             
-             
-             
-                
+            else:
+                st.markdown(f'<h1 style="text-align: center; color:green;font-size:24px;'
+                            f'">{"Felicitations le crédit est accordé"}</h1>',
+                            unsafe_allow_html=True)                
                 st.write('')
 
                 latest_iteration = st.empty()
@@ -200,6 +195,8 @@ def app():
                         .stProgress > div > div > div > div {
                             background-color: green;      }
                     </style>""", unsafe_allow_html=True, )
+            
+            
             st.write('')
             st.markdown(f'<h1 style="text-align: center; color:black;font-size:18px;'
                         f'">{"Ci dessous les 10 variables les plus importantes influant sur la décision"}</h1>',
