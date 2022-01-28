@@ -34,12 +34,8 @@ X.drop(['Unnamed: 0'], axis=1, inplace=True)
 
 Y = df['TARGET']
 
-#model = joblib.load("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl")
-#model = pickle.load(open("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl", 'rb'))
-#model = open('model.pkl', 'wb')
+
 model = pickle.load(open('model.pkl', 'rb'))
-
-
 
 
  ############################################### Requete API Mlflow ###########################################
@@ -63,7 +59,7 @@ def req_flask(data):
     if r.status_code != 200:
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
-    return r.json()
+    return r.text
 
 
 
