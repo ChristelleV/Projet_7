@@ -15,9 +15,17 @@ import pickle
 import joblib
 import streamlit.components.v1 as components
 from flask import Flask, request, redirect, url_for, flash, jsonify
-#import API_Flask
+import subprocess
+import sys
 
 
+##################################################### Lancement de l'api ###################################################
+
+# Lancer Flask API comme subprocess
+subprocess.run([f"{sys.executable}", "API_Flask.py"])
+
+
+########################################################## Importation des données ############################################
 
 df = pd.read_csv("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/data2.csv")
 df.drop(['Unnamed: 0'], axis=1, inplace=True)
@@ -34,8 +42,7 @@ model = open('mdl.pkl', 'wb')
 
 
 
- ############################################### API Mlflow ###########################################
-    
+ ############################################### Requete API Mlflow ###########################################
     
 def request_pred(data):
  
@@ -46,34 +53,10 @@ def request_pred(data):
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r.json()
 
-####################################################### API Flask ##########################################
-
-
-def request_flask(data):
-    #url =  'http://0.0.0.0:5000/api/'   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'  # 'http://127.0.0.1:5000/api/'
-    LOGIN_URL = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'
-    request = requests.session()
-    request.get(LOGIN_URL)
-    csrftoken = request.cookies['csrftoken']
-    j_data = json.dumps(data)
-    headers = {'content-type': 'application/json'}
-    r1 = requests.post(LOGIN_URL, data=j_data, headers=headers)
-    new_csrftoken = r1.cookies['csrftoken']
-    payload = {'csrfmiddlewaretoken': new_csrftoken,'data':data }
-    try :
-       r2 = request.post('http://127.0.0.1:8000/myview/myview', data=payload, headers={'X-CSRFToken': r1.cookies['crsftoken']})
-    except :
-       print('error expected')
-    
-    if r1.status_code != 200:
-        raise Exception(
-            "Request failed with status {}, {}".format(r.status_code, r.text))
-    return r2.json()
-
-############################################
+####################################################### Requete API Flask ##########################################
 
 def req_flask(data):
-    url = 'http://127.0.0.1:5000/api/'                   #'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'                             #
+    url = 'http://127.0.0.1:5000/api/'                                              
     j_data = json.dumps(data)
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(url, data=j_data, headers=headers)
