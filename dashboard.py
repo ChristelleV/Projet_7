@@ -14,7 +14,6 @@ from subprocess import Popen, PIPE
 import os
 
 
-
 st.sidebar.title('Tableau de bord pour prédiction de crédit ')
 st.sidebar.subheader("Navigation")
 
@@ -24,3 +23,4 @@ PAGES = {"Vue Générale": App1,
 selection = st.sidebar.radio("Aller à", list(PAGES.keys()))
 page = PAGES[selection]
 page.app()
+
