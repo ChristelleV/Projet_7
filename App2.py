@@ -1,4 +1,3 @@
-# app2.py
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,9 +20,8 @@ import sys
 
 ##################################################### Lancement de l'api ###################################################
 
-# Lancer Flask API comme subprocess
+# Lancer Flask API 
 subprocess.Popen([f"{sys.executable}", "API_Flask.py"])
-
 
 ########################################################## Importation des données ############################################
 
@@ -44,19 +42,19 @@ model = open('mdl.pkl', 'wb')
 
  ############################################### Requete API Mlflow ###########################################
     
-def request_pred(data):
+#def request_pred(data):
  
-    headers = {"Content-Type": "application/json"}
-    r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
-    if r.status_code != 200:
-        raise Exception(
-            "Request failed with status {}, {}".format(r.status_code, r.text))
-    return r.json()
+  #  headers = {"Content-Type": "application/json"}
+   # r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
+   # if r.status_code != 200:
+    #    raise Exception(
+     #       "Request failed with status {}, {}".format(r.status_code, r.text))
+    #return r.json()
 
 ####################################################### Requete API Flask ##########################################
 
 def req_flask(data):
-    url = 'http://127.0.0.1:5000/api/'                                              
+    url = 'http://127.0.0.1:5000/api/'                             
     j_data = json.dumps(data)
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(url, data=j_data, headers=headers)
@@ -64,6 +62,7 @@ def req_flask(data):
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
     return r.json()
+
 
 
 #################################
