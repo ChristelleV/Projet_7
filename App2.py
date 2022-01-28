@@ -15,8 +15,14 @@ import pickle
 import joblib
 import streamlit.components.v1 as components
 from flask import Flask, request, redirect, url_for, flash, jsonify
+import subprocess
+import sys
 #import API_Flask
 
+
+# Run Flask API as a subprocess
+subprocess.run([f"{sys.executable}", "API_Flask.py"])
+# ---------------------------------------------------------------
 
 
 df = pd.read_csv("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/data2.csv")
@@ -73,7 +79,7 @@ def request_flask(data):
 ############################################
 
 def req_flask(data):
-    url = 'https://share.streamlit.io/edsondev21/projet_7/main/API_Flask.py'                             #'http://127.0.0.1:5000/api/'
+    url = 'http://127.0.0.1:5000/api/'                             #'http://127.0.0.1:5000/api/'
     j_data = json.dumps(data)
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(url, data=j_data, headers=headers)
