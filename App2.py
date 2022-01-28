@@ -37,7 +37,7 @@ Y = df['TARGET']
 #model = joblib.load("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl")
 #model = pickle.load(open("https://raw.githubusercontent.com/Edsondev21/Projet_7/main/mdl.pkl", 'rb'))
 #model = open('model.pkl', 'wb')
-model = pickle.load(open('final_prediction.pickle', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 
 
 
@@ -150,7 +150,7 @@ def app():
             b = (X[X.index == client]).to_json(orient='split')
 
             pred = req_flask(X[X.index == client].to_json(orient='split'))
-
+            st.write(pred)
             explainer = lime_tabular.LimeTabularExplainer(training_data=np.array(X),
                                                       feature_names=X.columns,
                                                       class_names=['0', '1'],
