@@ -21,7 +21,7 @@ import sys
 
 
 # Run Flask API as a subprocess
-subprocess.run([f"{sys.executable}", "API_Flask.py"])
+subprocess.Popen([f"{sys.executable}", "API_Flask.py"])
 # ---------------------------------------------------------------
 
 
