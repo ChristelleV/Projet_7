@@ -22,7 +22,7 @@ import sys
 ##################################################### Lancement de l'api ###################################################
 
 # Lancer Flask API comme subprocess
-subprocess.run([f"{sys.executable}", "API_Flask.py"])
+subprocess.Popen([f"{sys.executable}", "API_Flask.py"])
 
 
 ########################################################## Importation des données ############################################
