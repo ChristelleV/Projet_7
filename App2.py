@@ -161,7 +161,7 @@ def app():
                                              num_features=10, labels = (1, 0))
             taux = (model.predict_proba(X[X.index == client])[0][0])*100
 
-            if pred == [0]:
+            if pred == 0:
                 st.markdown(f'<h1 style="text-align: center; color:green;font-size:24px;'
                             f'">{"Felicitations le crédit est accordé"}</h1>',
                             unsafe_allow_html=True)
