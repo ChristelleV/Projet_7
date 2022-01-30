@@ -38,23 +38,12 @@ Y = df['TARGET']
 model = pickle.load(open('model.pkl', 'rb'))
 
 
- ############################################### Requete API Mlflow ###########################################
-    
-#def request_pred(data):
- 
-  #  headers = {"Content-Type": "application/json"}
-   # r = requests.post("http://127.0.0.1:5000/invocations", data=data, headers=headers)    # #"https://share.streamlit.io/edsondev21/projet_7/main/API.py"
-   # if r.status_code != 200:
-    #    raise Exception(
-     #       "Request failed with status {}, {}".format(r.status_code, r.text))
-    #return r.json()
-
 ####################################################### Requete API Flask ##########################################
 
 def req_flask(data):
     url = 'http://127.0.0.1:5000/api/'                             
     j_data = json.dumps(data)
-    headers = {'content-type': 'application/json'} #, 'Accept-Charset': 'UTF-8'}
+    headers = {'content-type': 'application/json'} 
     r = requests.post(url, data=j_data, headers=headers)
     if r.status_code != 200:
         raise Exception(
@@ -146,7 +135,7 @@ def app():
             b = (X[X.index == client]).to_json(orient='split')
 
             pred = req_flask(X[X.index == client].to_json(orient='split'))
-            st.write(pred)
+            
             explainer = lime_tabular.LimeTabularExplainer(training_data=np.array(X),
                                                       feature_names=X.columns,
                                                       class_names=['0', '1'],
@@ -156,7 +145,7 @@ def app():
             exp = explainer.explain_instance(data_row= X.iloc[client],  predict_fn=model.predict_proba,
                                              num_features=10, labels = (1, 0))
             taux = (model.predict_proba(X[X.index == client])[0][0])*100
-            st.write(pred.format)
+            
             if pred == '[1.]':
 
                 st.markdown(
