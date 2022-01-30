@@ -32,11 +32,11 @@ Les valeures numériques ont été standardisé par StandardScaler et les valeur
 ### Modélisation
 
 L'entrainement d'un RandomForestClassifier étant trop lente et le fbeta_score trop mauvais c'est le modèle LightGBM qui a été selectionné. 
-Le AUC du modèle est de 76% et son fbeta_score de 83%
+Le AUC du modèle est de 77% et son fbeta_score de 82%
 
 ### Déploiement API
 
-Le modèle a été déployé via Mlflow Models 
+Le modèle a été déployé localement via Mlflow Models et ensuite via Flask sur Streamlit cloud
 
 ## Tableau de bord
 
@@ -48,13 +48,18 @@ Le tableau de bord devra contenir au minimum les fonctionnalités suivantes :
 
 
 Le projet a été conçu avec Streamlit.
-N'étant pas en local (mais sur colab) il faudra passer par un localtunnel pour obtenir le lien vers celui-ci
+J'ai commencé sur Goggle Colab donc n'étant pas en local il faudra passer par un localtunnel pour obtenir le lien vers l'application
 
-Pour cela, dans la cellule de code, il faudra taper:
+Pour cela, il faut dans une autre cellule, après le code de l'application, taper:
 
 ```bash
   !streamlit run app.py & npx localtunnel --port 8501
 ```
+
+Cependant pour plus de fluidité j'ai fini l'écriture du code du tableau de bord en local sur Pycharm 
+
+Voici le lien du tableau de bord: https://share.streamlit.io/edsondev21/projet_7/main/dashboard.py
+
 ## Authors
 
 - [@SonaSukiasyan](https://github.com/Edsondev21)
