@@ -201,9 +201,9 @@ def app():
             st.write('')
             st.write(exp.as_pyplot_figure(label = 0))
 
-            st.write("Ci-dessus vous pouvez voir les variables qui corrèlent à la classe 0, proportionnelle à leur apport. "
-                     "En vert celles qui apportent une contribution positive et en rouge celles apportant une contribution négative. "
-                     "En face de chaque variable il y a la valeur seuil expliquant la contribution positive ou négative ")
+            st.write("Ci-dessus vous pouvez voir les variables qui contribuent le plus à la décision "
+                     "En vert celles qui apportent une contribution positive et en rouge celles qui apportent une contribution négative à la décision d'octroi du crédit. "
+                     )
 
             st.write('')
             with st.expander("Plus d'informations"):
