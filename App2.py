@@ -59,7 +59,7 @@ def req_flask(data):
     if r.status_code != 200:
         raise Exception(
             "Request failed with status {}, {}".format(r.status_code, r.text))
-    return r.text
+    return r.json()
 
 
 
@@ -157,7 +157,7 @@ def app():
                                              num_features=10, labels = (1, 0))
             taux = (model.predict_proba(X[X.index == client])[0][0])*100
 
-            if pred=='1':
+            if pred == [1.0]:
 
                 st.markdown(
                     f'<h1 style="text-align: center; color:red;font-size:24px;">{"Le crédit est malheureusement refusé"}</h1>',
