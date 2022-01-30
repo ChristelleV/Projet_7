@@ -190,7 +190,7 @@ def app():
             st.write('')
             st.write(exp.as_pyplot_figure(label = 0))
 
-            st.write("Ci-dessus vous pouvez voir les variables qui contribuent le plus à la décision "
+            st.write("Ci-dessus vous pouvez voir les variables qui contribuent le plus à la décision.  "
                      "En vert celles qui apportent une contribution positive et en rouge celles qui apportent une contribution négative à la décision d'octroi du crédit. "
                      )
 
