@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 
 @app.route('/api/', methods=['POST'])
+allow_reuse_address = True
 def makecalc():
     data = request.get_json()
     print(data)
