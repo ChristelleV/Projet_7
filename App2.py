@@ -76,7 +76,7 @@ def app():
             fig = plt.figure(figsize=(6, 4))
             sns.countplot(x=feature, data=df, hue='TARGET', palette=['green', "red"])
             plt.axvline(x=df[df['SK_ID_CURR'] == client][feature].name, linewidth=5)
-            plt.xticks(rotation = 45)
+            plt.xticks(rotation = 80)
             st.pyplot(fig)
 
         def kde_client(feature, xlab, titre):
