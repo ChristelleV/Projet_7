@@ -35,7 +35,7 @@ X.drop(['Unnamed: 0'], axis=1, inplace=True)
 Y = df['TARGET']
 
 
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('final_prediction.pickle', 'rb'))
 
 
 ####################################################### Requete API Flask ##########################################
